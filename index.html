@@ -1,22 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gypsee Soul Company</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <style>
+        .v-avatar {
+            width: 100px !important;
+            height: 100px !important;
+        }
+    </style>
 </head>
 <body>
-    <section class="section">
-        <div class="container">
-            <h1 class="title">
-                GypseeSoulCo
-            </h1>
-            <p class="subtitle">
-                This is a website! Pretend to be excited :).
-            </p>
-        </div>
-    </section>
+    <div id="app">
+        <v-app>
+            <v-content>
+                <v-container>
+
+                    <v-banner>
+                        <v-avatar slot="icon"
+                                  size="100"
+                                  width="100">
+                            <v-img src="logo.png"
+                                   max-width="100"
+                                   max-height="100"></v-img>
+                        </v-avatar>
+
+                        <h1>Gypsee Soul Company</h1>
+
+                        <template v-slot:actions>
+                            <v-btn text color="deep-purple accent-4" href="https://poshmark.com">Poshmark</v-btn>
+                            <v-btn text color="deep-purple accent-4" href="https://ebay.com">eBay</v-btn>
+                        </template>
+                    </v-banner>
+                    <v-card class="mx-auto"
+                            max-width="600" style="margin-top: 60px;">
+                        <v-system-bar color="indigo darken-2"></v-system-bar>
+
+                        <v-toolbar color="indigo"
+                                   dark>
+
+                            <v-toolbar-title>See what we have&hellip;</v-toolbar-title>
+
+                            <v-spacer></v-spacer>
+
+                        </v-toolbar>
+
+                        <v-container class="pa-2"
+                                     fluid>
+                            <v-row>
+                                <v-col v-for="card in cards"
+                                       :key="card.title"
+                                       v-bind="{ [`xs${card.flex}`]: true }">
+                                    <v-card>
+                                        <v-img :src="card.src"
+                                               class="white--text"
+                                               height="500px"
+                                               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)">
+                                            <v-card-title class="fill-height align-end"
+                                                          v-text="card.title"></v-card-title>
+                                        </v-img>
+
+                                        <v-card-actions>
+                                            <v-spacer></v-spacer>
+
+                                            <v-btn icon>
+                                                <span v-text="card.price"></span>
+                                            </v-btn>
+
+                                            <v-btn color="primary" >
+                                                View Now
+                                            </v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-card>
+                </v-container>
+            </v-content>
+        </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+        new Vue({
+  el: '#app',
+  vuetify: new Vuetify(),
+  data: () => ({
+    cards: [
+      { title: 'Some stupid shirt', src: 'https://m.media-amazon.com/images/I/A1ntnF3PJOL._CLa%7C2140,2000%7C51WL4m2cgZL.png%7C0,0,2140,2000+0.0,0.0,2140.0,2000.0._UX522_.png', flex: 12, vendor: 'Poshmark', price: '$24.95' },
+      { title: 'A skirt that is green', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRoa839W8mMfz10LTUQY55KKzCZXKCricHPR3fmgbsVPQEKF0WtA', flex: 6, vendor: 'eBay', price: '$14.95' },
+      { title: "Jeffrey Epstein's island", src: 'https://image.cnbcfm.com/api/v1/image/106035234-1563907926369rtx70iam.jpg?v=1563907989&w=678&h=381', flex: 6, vendor: 'Poshmark', price: '$19,242,224.95' },
+    ],
+  }),
+})
+    </script>
 </body>
 </html>
